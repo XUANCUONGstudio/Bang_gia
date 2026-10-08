@@ -22,6 +22,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            font-size: 17.5px; /* TĂNG SIZE CHỮ TỔNG THỂ */
         }
 
         /* Lớp tạo đám mây chìm */
@@ -57,7 +58,7 @@
             padding: 40px 20px 20px;
         }
         .header h1 {
-            font-size: 2.8em;
+            font-size: 3em; /* Phóng to logo text */
             color: var(--highlight);
             font-weight: 900;
             text-transform: uppercase;
@@ -73,11 +74,11 @@
             margin-top: 15px;
         }
         .btn-link {
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.95em;
+            font-size: 1em; /* Tăng size text nút */
             color: white;
             transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -98,8 +99,8 @@
         .menu-btn {
             width: 100%;
             max-width: 450px;
-            padding: 20px;
-            font-size: 1.4em;
+            padding: 22px;
+            font-size: 1.45em; /* Tăng size nút menu */
             font-weight: 800;
             font-family: 'Nunito', sans-serif;
             color: var(--primary-pink);
@@ -133,15 +134,16 @@
         .top-bar {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .back-btn {
             background: var(--white);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 22px;
             border-radius: 20px;
             font-family: 'Nunito', sans-serif;
             font-weight: 800;
+            font-size: 1em;
             color: var(--primary-pink);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: all 0.2s;
@@ -151,7 +153,7 @@
             flex-grow: 1;
             text-align: center;
             color: var(--highlight);
-            font-size: 1.8em;
+            font-size: 2.2em; /* PHÓNG TO TIÊU ĐỀ DANH MỤC */
             font-weight: 900;
             margin: 0;
             text-transform: uppercase;
@@ -160,15 +162,16 @@
 
         /* NÚT XEM ẢNH THAM KHẢO */
         .ref-container {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             background: rgba(255, 255, 255, 0.6);
-            padding: 15px;
+            padding: 18px;
             border-radius: 20px;
             box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
         }
         .ref-container p {
             text-align: center; 
             font-weight: 800; 
+            font-size: 1.1em;
             color: var(--highlight); 
             margin: 0 0 15px 0;
         }
@@ -181,10 +184,11 @@
         .ref-links a {
             background: var(--white);
             color: var(--highlight);
-            padding: 12px 20px;
+            padding: 14px 22px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 800;
+            font-size: 1.05em;
             box-shadow: 0 5px 15px rgba(240, 113, 133, 0.2);
             border: 2px solid var(--primary-pink);
             transition: all 0.3s;
@@ -202,7 +206,7 @@
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
         .pricing-card {
             background: rgba(255, 255, 255, 0.95);
@@ -217,55 +221,85 @@
         .card-header {
             background: linear-gradient(135deg, var(--primary-pink) 0%, #ff8fa3 100%);
             text-align: center;
-            padding: 25px 20px;
+            padding: 30px 20px;
         }
         .card-header h2 { 
-            margin: 0; font-size: 1.6em; font-weight: 900; color: var(--white);
-            text-transform: uppercase; letter-spacing: 1px;
+            margin: 0; 
+            font-size: 2em; /* PHÓNG TO TÊN GÓI */
+            font-weight: 900; 
+            color: var(--white);
+            text-transform: uppercase; 
+            letter-spacing: 1px;
         }
         .card-price { 
             display: inline-block;
             background: var(--white);
             color: var(--highlight);
-            font-size: 1.8em; font-weight: 900; 
-            padding: 5px 25px; border-radius: 30px;
+            font-size: 2em; /* PHÓNG TO GIÁ TIỀN */
+            font-weight: 900; 
+            padding: 8px 30px; 
+            border-radius: 30px;
             margin-top: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
         .card-body { padding: 25px; flex-grow: 1; }
         .card-body ul { list-style: none; padding: 0; margin: 0; }
         .card-body ul li {
-            padding: 10px 0; border-bottom: 1px dashed var(--soft-pink);
-            font-size: 1.05em; font-weight: 600; position: relative;
-            padding-left: 28px; color: #6d5b5e;
+            padding: 12px 0; 
+            border-bottom: 1px dashed var(--soft-pink);
+            font-size: 1.1em; /* TĂNG SIZE CHỮ QUYỀN LỢI */
+            font-weight: 600; 
+            position: relative;
+            padding-left: 32px; 
+            color: #6d5b5e;
         }
         .card-body ul li:last-child { border-bottom: none; }
         .card-body ul li:before {
-            content: '✿'; color: var(--primary-pink); position: absolute; left: 0; font-size: 1.2em;
+            content: '✿'; 
+            color: var(--primary-pink); 
+            position: absolute; 
+            left: 0; 
+            font-size: 1.2em;
         }
-        .focus-text { color: var(--highlight); font-weight: 800; font-size: 1.1em; }
+        .focus-text { 
+            color: var(--highlight); 
+            font-weight: 800; 
+            font-size: 1.15em; /* TĂNG SIZE CHỮ NHẤN MẠNH */
+        }
 
         /* STYLE PHẦN GHI CHÚ */
         .card-footer {
             background-color: #fff0f3;
-            padding: 18px 25px;
+            padding: 20px 25px;
             border-top: 1px solid var(--soft-pink);
         }
         .note-item {
-            display: flex; align-items: flex-start; margin-bottom: 8px;
-            font-size: 0.95em; color: #5c4a4d; font-weight: 600; line-height: 1.4;
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 10px;
+            font-size: 1.05em; /* TĂNG SIZE CHỮ GHI CHÚ */
+            color: #5c4a4d; 
+            font-weight: 600; 
+            line-height: 1.4;
         }
         .note-item:last-child { margin-bottom: 0; }
-        .note-icon { color: var(--highlight); margin-right: 8px; font-size: 1.1em; flex-shrink: 0; }
+        .note-icon { 
+            color: var(--highlight); 
+            margin-right: 8px; 
+            font-size: 1.2em; 
+            flex-shrink: 0; 
+        }
 
+        /* RESPONSIVE CHO ĐIỆN THOẠI */
         @media (max-width: 600px) {
-            .header h1 { font-size: 2.2em; }
-            .category-title { font-size: 1.3em; }
-            .back-btn { padding: 8px 12px; font-size: 0.85em; }
-            .card-header h2 { font-size: 1.4em; }
-            .card-price { font-size: 1.5em; }
-            .ref-links a { font-size: 0.9em; padding: 10px 15px; width: 100%; justify-content: center; }
-            .btn-link { font-size: 0.85em; padding: 8px 15px; }
+            .header h1 { font-size: 2.5em; }
+            .category-title { font-size: 1.7em; }
+            .back-btn { padding: 10px 15px; font-size: 0.9em; }
+            .card-header h2 { font-size: 1.7em; }
+            .card-price { font-size: 1.7em; padding: 6px 20px;}
+            .ref-links a { font-size: 1em; padding: 12px 18px; width: 100%; justify-content: center; }
+            .btn-link { font-size: 0.9em; padding: 10px 16px; }
+            .menu-btn { font-size: 1.3em; padding: 18px; }
         }
     </style>
 </head>
@@ -313,8 +347,8 @@
                             <ul>
                                 <li><span class="focus-text">1 Bối cảnh kèm 1 Bộ trang phục</span></li>
                                 <li>1 ảnh 20x30 gỗ cao cấp bọc viền</li>
-                                <li>5 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 5 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -329,8 +363,8 @@
                                 <li><span class="focus-text">2 Bối cảnh kèm 2 Bộ trang phục</span></li>
                                 <li>1 ảnh 50x75 gỗ cao cấp bọc viền</li>
                                 <li>1 ảnh 20x30 gỗ cao cấp bọc viền</li>
-                                <li>10 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 10 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -346,8 +380,8 @@
                                 <li><span class="focus-text">3 Bối cảnh kèm 3 Bộ trang phục</span></li>
                                 <li>1 ảnh 60x90 gỗ cao cấp bọc viền</li>
                                 <li>1 ảnh 20x30 gỗ cao cấp bọc viền</li>
-                                <li>10 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 12 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -363,7 +397,8 @@
                                 <li><span class="focus-text">4 Bối cảnh kèm 4 Bộ trang phục</span></li>
                                 <li>1 ảnh 50x75 gỗ cao cấp bọc viền</li>
                                 <li>1 Album dàn trang cao cấp 20 ảnh size 15x21</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 20 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -394,7 +429,8 @@
                             <ul>
                                 <li>Chụp 1 bối cảnh bé & 1 bối cảnh gia đình</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh 50x75 gỗ cao cấp bọc viền</span></li>
-                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                                <li>Tặng 10 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -410,11 +446,12 @@
                                 <li>Chụp 1 bối cảnh bé & 1 bối cảnh gia đình</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 60x90 gỗ cao cấp</span></li>
                                 <li><span class="focus-text">Tặng 1 Ảnh để bàn 20x30 gỗ</span></li>
-                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                                <li>Tặng 15 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình 3-5 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình 3-5 thành viên.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho Mẹ (Makeup thêm: +200k/người).</div>
                         </div>
@@ -426,11 +463,12 @@
                                 <li>Chụp 2 bối cảnh tùy chọn</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 70x110 gỗ cao cấp</span></li>
                                 <li><span class="focus-text">Tặng 1 Album cao cấp size 15x21 (20 ảnh)</span></li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 20 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng gia đình tối đa 6 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình tối đa 6 thành viên.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 2 người.</div>
                         </div>
@@ -442,11 +480,12 @@
                                 <li>Chụp 2 bối cảnh tùy chọn</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 80x120 gỗ cao cấp</span></li>
                                 <li><span class="focus-text">Tặng 1 Album cao cấp size 15x21 (20 ảnh)</span></li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 20 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng gia đình tối đa 6 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình tối đa 8 thành viên.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 3 người (Makeup thêm: +200k/người).</div>
                         </div>
@@ -458,11 +497,12 @@
                                 <li>Chụp 2 bối cảnh tùy chọn</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 80x120 MICA HD</span></li>
                                 <li><span class="focus-text">Tặng 1 Ảnh để bàn 20x30 gỗ cao cấp</span></li>
-                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                                <li>Tặng 15 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng gia đình tối đa 10 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình tối đa 10 thành viên.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
                             <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 3 người.</div>
                         </div>
@@ -474,7 +514,8 @@
                                 <li>Chụp 2 bối cảnh tùy chọn</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 100x150 MICA HD</span></li>
                                 <li><span class="focus-text">Tặng 1 Ảnh để bàn 20x30 gỗ cao cấp</span></li>
-                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                                <li>Tặng 15 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -490,7 +531,8 @@
                                 <li>Chụp 2 bối cảnh tùy chọn</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 80x120 MICA LED</span></li>
                                 <li><span class="focus-text">Tặng 1 Ảnh cỡ 40x60 gỗ</span></li>
-                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                                <li>Tặng 15 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -506,7 +548,8 @@
                                 <li>Chụp 2 bối cảnh tùy chọn</li>
                                 <li><span class="focus-text">Tặng 1 Ảnh phóng 100x150 MICA LED</span></li>
                                 <li><span class="focus-text">Tặng 1 Album thiết kế cao cấp size 15x21</span></li>
-                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                                <li>Tặng 20 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -538,7 +581,7 @@
                                 <li><span class="focus-text">Chụp 1 Concept & 1 Trang phục</span></li>
                                 <li>Tặng 1 ảnh để bàn 20x30 gỗ cao cấp</li>
                                 <li>Tặng 10 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -553,7 +596,7 @@
                                 <li><span class="focus-text">Chụp 2 Concept & 2 Trang phục</span></li>
                                 <li>Tặng 1 ảnh 40x60 gỗ cao cấp</li>
                                 <li>Tặng 10 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -583,8 +626,8 @@
                             <ul>
                                 <li><span class="focus-text">Chụp 1 Concept & 1 Trang phục</span></li>
                                 <li>Tặng 1 ảnh 20x30 gỗ cao cấp</li>
-                                <li>10 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 10 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -598,8 +641,8 @@
                             <ul>
                                 <li><span class="focus-text">Chụp 2 Concept & 2 Trang phục</span></li>
                                 <li>Tặng 1 ảnh 20x30 thủy tinh cao cấp</li>
-                                <li>15 file ảnh chỉnh sửa</li>
-                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                                <li>Tặng 15 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -629,8 +672,8 @@
                             <ul>
                                 <li><span class="focus-text">Chụp 1 Concept & 1 Bộ trang phục</span></li>
                                 <li>Tặng 1 ảnh 20x30 gỗ cao cấp</li>
-                                <li>10 file ảnh chỉnh sửa</li>
-                                <li>Gửi lại file buổi chụp & Copy toàn bộ file chỉnh sửa</li>
+                                <li>Tặng 10 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
@@ -644,7 +687,7 @@
                                 <li><span class="focus-text">Chụp 2 Concept & 2 Bộ trang phục</span></li>
                                 <li>Tặng 2 ảnh 20x30 gỗ cao cấp</li>
                                 <li>Tặng 10 file ảnh chỉnh sửa</li>
-                                <li>Gửi lại file buổi chụp & Copy toàn bộ file chỉnh sửa</li>
+                                <li>Gửi lại toàn bộ file gốc</li>
                             </ul>
                         </div>
                         <div class="card-footer">
