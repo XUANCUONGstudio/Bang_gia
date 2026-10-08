@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Giá Dịch Vụ - Xuân Cương Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #f07185; 
+            --soft-pink: #ffb3c1;
+            --bg-color: #ffd6e0;
+            --text-color: #5c4a4d;
+            --white: #ffffff;
+            --highlight: #d63351; 
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Lớp tạo đám mây chìm - Đã fix lỗi đè cảm ứng trên Mobile */
+        .clouds-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; 
+            background: 
+                radial-gradient(circle at 10% 15%, rgba(255,255,255,0.5) 120px, transparent 121px),
+                radial-gradient(circle at 25% 10%, rgba(255,255,255,0.5) 150px, transparent 151px),
+                radial-gradient(circle at 85% 85%, rgba(255,255,255,0.5) 140px, transparent 141px),
+                radial-gradient(circle at 75% 95%, rgba(255,255,255,0.5) 160px, transparent 161px),
+                radial-gradient(circle at 95% 75%, rgba(255,255,255,0.5) 100px, transparent 101px),
+                radial-gradient(circle at -5% 50%, rgba(255,255,255,0.4) 180px, transparent 181px);
+            z-index: -1;
+        }
+
+        .app-container {
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding: 0 15px 50px;
+        }
+
+        button, a {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* HEADER & LOGO TEXT */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+        .header h1 {
+            font-size: 2.8em;
+            color: var(--highlight);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.8), 4px 4px 10px rgba(240, 113, 133, 0.3);
+            margin: 0 0 15px 0;
+            letter-spacing: 1.5px;
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .btn-link {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95em;
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn-zalo { background-color: #0068ff; }
+        .btn-fb { background-color: #1877f2; }
+        .btn-fanpage { background-color: var(--primary-pink); }
+        .btn-link:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        /* MÀN HÌNH CHÍNH (MENU) */
+        .home-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+        }
+        .menu-btn {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            font-size: 1.4em;
+            font-weight: 800;
+            font-family: 'Nunito', sans-serif;
+            color: var(--primary-pink);
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid var(--white);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(240, 113, 133, 0.25);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .menu-btn:hover {
+            background: var(--primary-pink);
+            color: var(--white);
+            transform: scale(1.02);
+            border-color: var(--primary-pink);
+        }
+
+        /* CÁC TRANG CHI TIẾT */
+        .category-view {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back-btn {
+            background: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            color: var(--primary-pink);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: var(--primary-pink); color: white; }
+        .category-title {
+            flex-grow: 1;
+            text-align: center;
+            color: var(--highlight);
+            font-size: 1.8em;
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
+        }
+
+        /* NÚT XEM ẢNH THAM KHẢO */
+        .ref-container {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .ref-container p {
+            text-align: center; 
+            font-weight: 800; 
+            color: var(--highlight); 
+            margin: 0 0 15px 0;
+        }
+        .ref-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .ref-links a {
+            background: var(--white);
+            color: var(--highlight);
+            padding: 12px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 800;
+            box-shadow: 0 5px 15px rgba(240, 113, 133, 0.2);
+            border: 2px solid var(--primary-pink);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ref-links a:hover {
+            background: var(--primary-pink);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* STYLE THẺ BẢNG GIÁ */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(240, 113, 133, 0.2);
+            border: 3px solid #fff;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, #ff8fa3 100%);
+            text-align: center;
+            padding: 25px 20px;
+        }
+        .card-header h2 { 
+            margin: 0; font-size: 1.6em; font-weight: 900; color: var(--white);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .card-price { 
+            display: inline-block;
+            background: var(--white);
+            color: var(--highlight);
+            font-size: 1.8em; font-weight: 900; 
+            padding: 5px 25px; border-radius: 30px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .card-body { padding: 25px; flex-grow: 1; }
+        .card-body ul { list-style: none; padding: 0; margin: 0; }
+        .card-body ul li {
+            padding: 10px 0; border-bottom: 1px dashed var(--soft-pink);
+            font-size: 1.05em; font-weight: 600; position: relative;
+            padding-left: 28px; color: #6d5b5e;
+        }
+        .card-body ul li:last-child { border-bottom: none; }
+        .card-body ul li:before {
+            content: '✿'; color: var(--primary-pink); position: absolute; left: 0; font-size: 1.2em;
+        }
+        .focus-text { color: var(--highlight); font-weight: 800; font-size: 1.1em; }
+
+        /* STYLE PHẦN GHI CHÚ */
+        .card-footer {
+            background-color: #fff0f3;
+            padding: 18px 25px;
+            border-top: 1px solid var(--soft-pink);
+        }
+        .note-item {
+            display: flex; align-items: flex-start; margin-bottom: 8px;
+            font-size: 0.95em; color: #5c4a4d; font-weight: 600; line-height: 1.4;
+        }
+        .note-item:last-child { margin-bottom: 0; }
+        .note-icon { color: var(--highlight); margin-right: 8px; font-size: 1.1em; flex-shrink: 0; }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2.2em; }
+            .category-title { font-size: 1.3em; }
+            .back-btn { padding: 8px 12px; font-size: 0.85em; }
+            .card-header h2 { font-size: 1.4em; }
+            .card-price { font-size: 1.5em; }
+            .ref-links a { font-size: 0.9em; padding: 10px 15px; width: 100%; justify-content: center; }
+            .btn-link { font-size: 0.85em; padding: 8px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="clouds-bg"></div>
+
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="header">
+            <h1>XUÂN CƯƠNG STUDIO</h1>
+            <div class="contact-links">
+                <a href="https://zalo.me/0964979815" target="_blank" class="btn-link btn-zalo">☎ Zalo: 0964 979 815</a>
+                <a href="https://www.facebook.com/xuancuongstudio" target="_blank" class="btn-link btn-fanpage">⭐ Fanpage Studio</a>
+                <a href="https://www.facebook.com/cuong.haru.08" target="_blank" class="btn-link btn-fb">👤 FB Cương Xuân Đào</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- MÀN HÌNH CHÍNH (MENU) -->
+            <div id="view-home" class="home-menu">
+                <button class="menu-btn" onclick="showCategory('view-baby')">👼 Các gói chụp Em bé <span>➜</span></button>
+                <button class="menu-btn" onclick="showCategory('view-giadinh')">🏡 Các gói chụp Gia đình <span>➜</span></button>
+                <button class="menu-btn" onclick="showCategory('view-mebau')">🤰 Các gói chụp Mẹ Bầu <span>➜</span></button>
+                <button class="menu-btn" onclick="showCategory('view-canhan')">👩 Các gói chụp Cá nhân <span>➜</span></button>
+                <button class="menu-btn" onclick="showCategory('view-couple')">💑 Các gói chụp Couple <span>➜</span></button>
+            </div>
+
+            <!-- VIEW: EM BÉ -->
+            <div id="view-baby" class="category-view">
+                <div class="top-bar">
+                    <button class="back-btn" onclick="showHome()">⬅ Quay lại</button>
+                    <h2 class="category-title">Chụp Em Bé</h2>
+                </div>
+                <!-- LINK ẢNH THAM KHẢO -->
+                <div class="ref-container">
+                    <p>👇 Bấm vào link dưới đây để xem ảnh mẫu 👇</p>
+                    <div class="ref-links">
+                        <a href="https://photos.app.goo.gl/HJZpHMCsoDA2Yn1u8" target="_blank">📸 Mẫu Bé Gái</a>
+                        <a href="https://photos.app.goo.gl/KqXCh1GASNKif8kx5" target="_blank">📸 Mẫu Bé Trai</a>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Baby 1</h2><div class="card-price">650.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">1 Bối cảnh kèm 1 Bộ trang phục</span></li>
+                                <li>1 ảnh 20x30 gỗ cao cấp bọc viền</li>
+                                <li>5 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho 1 bé.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Makeup chuyên nghiệp cho bé: +200k.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Baby 2</h2><div class="card-price">1.200.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">2 Bối cảnh kèm 2 Bộ trang phục</span></li>
+                                <li>1 ảnh 50x75 gỗ cao cấp bọc viền</li>
+                                <li>1 ảnh 20x30 gỗ cao cấp bọc viền</li>
+                                <li>10 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Ảnh anh chị em ruột: +200k/bé.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bố mẹ chụp cùng: phụ thu 300k.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Mẹ makeup: phụ thu 200k.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Baby 3</h2><div class="card-price">1.600.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">3 Bối cảnh kèm 3 Bộ trang phục</span></li>
+                                <li>1 ảnh 60x90 gỗ cao cấp bọc viền</li>
+                                <li>1 ảnh 20x30 gỗ cao cấp bọc viền</li>
+                                <li>12 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Ảnh anh chị em ruột: +200k/bé.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bố mẹ chụp cùng: phụ thu 300k.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Mẹ makeup: phụ thu 200k.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Baby 4</h2><div class="card-price">2.500.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">4 Bối cảnh kèm 4 Bộ trang phục</span></li>
+                                <li>1 ảnh 50x75 gỗ cao cấp bọc viền</li>
+                                <li>1 Album dán trang cao cấp (20 ảnh 15x21)</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Ảnh anh chị em ruột: +200k/bé.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bố mẹ chụp cùng: phụ thu 300k.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Mẹ makeup: phụ thu 200k.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: GIA ĐÌNH -->
+            <div id="view-giadinh" class="category-view">
+                <div class="top-bar">
+                    <button class="back-btn" onclick="showHome()">⬅ Quay lại</button>
+                    <h2 class="category-title">Chụp Gia Đình</h2>
+                </div>
+                <!-- LINK ẢNH THAM KHẢO -->
+                <div class="ref-container">
+                    <p>👇 Bấm vào link dưới đây để xem ảnh mẫu 👇</p>
+                    <div class="ref-links">
+                        <a href="https://photos.app.goo.gl/6roRot8GET8GkKim6" target="_blank">🏡 Xem Mẫu Gia Đình</a>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình 1</h2><div class="card-price">1.600.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 1 bối cảnh bé & 1 bối cảnh gia đình</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh 50x75 gỗ cao cấp bọc viền</span></li>
+                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình tối đa 3 thành viên.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho Mẹ.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình 2</h2><div class="card-price">2.400.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 1 bối cảnh bé & 1 bối cảnh gia đình</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh phóng 60x90 gỗ cao cấp</span></li>
+                                <li><span class="focus-text">Kèm 1 Ảnh để bàn 20x30 gỗ</span></li>
+                                <li>15 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng cho gia đình 3-5 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho Mẹ (Makeup thêm: +200k/người).</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình 3</h2><div class="card-price">3.500.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 2 bối cảnh tùy chọn</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh phóng 70x110 gỗ cao cấp</span></li>
+                                <li><span class="focus-text">Tặng 1 Album cao cấp size 15x21 (20 ảnh)</span></li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng gia đình tối đa 6 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 2 người.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình 4</h2><div class="card-price">5.000.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 2 bối cảnh tùy chọn</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh phóng 80x120 gỗ cao cấp</span></li>
+                                <li><span class="focus-text">Tặng 1 Album cao cấp size 15x21 (20 ảnh)</span></li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng gia đình tối đa 6 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 3 người (Makeup thêm: +200k/người).</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình 5</h2><div class="card-price">7.000.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 2 bối cảnh tùy chọn</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh phóng 80x120 MICA HD</span></li>
+                                <li><span class="focus-text">Kèm 1 Ảnh để bàn 20x30 gỗ cao cấp</span></li>
+                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Áp dụng gia đình tối đa 10 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 3 người.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình 6</h2><div class="card-price">9.800.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 2 bối cảnh tùy chọn</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh phóng 100x150 MICA HD</span></li>
+                                <li><span class="focus-text">Kèm 1 Ảnh để bàn 20x30 gỗ cao cấp</span></li>
+                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm cho 4 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Makeup thêm người phụ phí 200k/người.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Gia Đình VIP</h2><div class="card-price">14.600.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Chụp 2 bối cảnh tùy chọn</li>
+                                <li><span class="focus-text">Tặng 1 Ảnh phóng 80x120 MICA LED</span></li>
+                                <li><span class="focus-text">Kèm 1 Ảnh cỡ 40x60 gỗ</span></li>
+                                <li>10 file ảnh chỉnh sửa, trả toàn bộ file</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Hỗ trợ trang phục cho cả gia đình.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm 3-5 người.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Tặng 1 bối cảnh riêng cho bé (nếu có).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: MẸ BẦU -->
+            <div id="view-mebau" class="category-view">
+                <div class="top-bar">
+                    <button class="back-btn" onclick="showHome()">⬅ Quay lại</button>
+                    <h2 class="category-title">Chụp Mẹ Bầu</h2>
+                </div>
+                <!-- LINK ẢNH THAM KHẢO -->
+                <div class="ref-container">
+                    <p>👇 Bấm vào link dưới đây để xem ảnh mẫu 👇</p>
+                    <div class="ref-links">
+                        <a href="https://photos.app.goo.gl/VZTohfsK8sZC4B5u7" target="_blank">🤰 Xem Mẫu Mẹ Bầu</a>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Mẹ Bầu 1</h2><div class="card-price">1.200.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">Chụp 1 Concept & 1 Trang phục</span></li>
+                                <li>Tặng 1 ảnh để bàn 20x30 gỗ cao cấp</li>
+                                <li>Tặng 10 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm & trang phục mẹ.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bố chụp cùng: phụ thu 300k.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bé lớn chụp cùng: phụ thu 200k.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Mẹ Bầu 2</h2><div class="card-price">2.000.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">Chụp 2 Concept & 2 Trang phục</span></li>
+                                <li>Tặng 1 ảnh 40x60 gỗ cao cấp</li>
+                                <li>Tặng 15 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm & trang phục mẹ.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bố chụp cùng: phụ thu 300k.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Bé lớn chụp cùng: phụ thu 200k.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: CÁ NHÂN -->
+            <div id="view-canhan" class="category-view">
+                <div class="top-bar">
+                    <button class="back-btn" onclick="showHome()">⬅ Quay lại</button>
+                    <h2 class="category-title">Chụp Cá Nhân</h2>
+                </div>
+                <!-- LINK ẢNH THAM KHẢO -->
+                <div class="ref-container">
+                    <p>👇 Bấm vào link dưới đây để xem ảnh mẫu 👇</p>
+                    <div class="ref-links">
+                        <a href="https://photos.app.goo.gl/qW62P2qGFFLBaZhn9" target="_blank">🌟 Xem Concept Cá Nhân</a>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Cá Nhân 1</h2><div class="card-price">1.200.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">Chụp 1 Concept & 1 Trang phục</span></li>
+                                <li>Tặng 1 ảnh 20x30 gỗ cao cấp</li>
+                                <li>10 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí makeup & hỗ trợ trang phục.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Đổi layout hoặc thay trang phục: Phụ phí 200k.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Cá Nhân 2</h2><div class="card-price">2.000.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">Chụp 2 Concept & 2 Trang phục</span></li>
+                                <li>Tặng 1 ảnh 20x30 thủy tinh cao cấp</li>
+                                <li>15 file ảnh chỉnh sửa</li>
+                                <li>Trả toàn bộ file gốc & chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí makeup & hỗ trợ trang phục.</div>
+                            <div class="note-item"><span class="note-icon">📌</span> Đổi layout hoặc thay trang phục: Phụ phí 200k.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: COUPLE (ĐÃ FIX LỖI TEXT) -->
+            <div id="view-couple" class="category-view">
+                <div class="top-bar">
+                    <button class="back-btn" onclick="showHome()">⬅ Quay lại</button>
+                    <h2 class="category-title">Chụp Couple</h2>
+                </div>
+                <!-- LINK ẢNH THAM KHẢO -->
+                <div class="ref-container">
+                    <p>👇 Bấm vào link dưới đây để xem ảnh mẫu 👇</p>
+                    <div class="ref-links">
+                        <a href="https://photos.app.goo.gl/Xy129hR8ucXTLJkB8" target="_blank">💑 Xem Mẫu Couple</a>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Couple 1</h2><div class="card-price">1.500.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">Chụp 1 Concept & 1 Bộ trang phục</span></li>
+                                <li>Tặng 1 ảnh 20x30 gỗ cao cấp</li>
+                                <li>10 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại file buổi chụp & Copy toàn bộ file chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí trang điểm và trang phục.</div>
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-header"><h2>Couple 2</h2><div class="card-price">2.200.000 đ</div></div>
+                        <div class="card-body">
+                            <ul>
+                                <li><span class="focus-text">Chụp 2 Concept & 2 Bộ trang phục</span></li>
+                                <li>Tặng 2 ảnh 20x30 gỗ cao cấp</li>
+                                <li>Tặng 10 file ảnh chỉnh sửa</li>
+                                <li>Gửi lại file buổi chụp & Copy toàn bộ file chỉnh sửa</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="note-item"><span class="note-icon">📌</span> Miễn phí makeup và hỗ trợ trang phục.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- SCRIPT CHUYỂN TRANG -->
+    <script>
+        function showCategory(categoryId) {
+            document.getElementById('view-home').style.display = 'none';
+            var views = document.getElementsByClassName('category-view');
+            for(var i = 0; i < views.length; i++) {
+                views[i].style.display = 'none';
+            }
+            document.getElementById(categoryId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHome() {
+            var views = document.getElementsByClassName('category-view');
+            for(var i = 0; i < views.length; i++) {
+                views[i].style.display = 'none';
+            }
+            document.getElementById('view-home').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
